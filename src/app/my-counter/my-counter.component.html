@@ -1,0 +1,17 @@
+<div class="container ">
+  <div class="mt-3 mb-3">
+    <p><b>Current Count:</b> {{ counter$ | async }}</p>
+    <p><b>Update date:</b> {{ updatedAt$ | async | date:'HH:mm:ss, dd:MM:yyyy' }}</p>
+  </div>
+  <button class="btn btn-success ml-2" (click)="increment()"> + </button>
+  <button class="btn btn-warning  ml-2"
+          [disabled]="disabledDecrease$ | async"
+          (click)="decrement()">
+    -
+  </button>
+  <button class="btn btn-danger  ml-2"
+          [disabled]="disabledDecrease$ | async"
+          (click)="reset()">
+    Reset
+  </button>
+</div>
