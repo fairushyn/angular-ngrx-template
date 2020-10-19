@@ -5,6 +5,7 @@ export const countKey = 'count';
 export interface ICounterState {
   counter: number;
   updatedAt: number;
+  disabledDecrease: boolean;
 }
 
 export interface IAppState {
@@ -21,4 +22,9 @@ export const selectCounter = createSelector(
 export const selectUpdatedAt = createSelector(
   selectCountFeature,
   (state: ICounterState) => state.updatedAt
+);
+
+export const selectDisabledDecrease = createSelector(
+  selectCountFeature,
+  (state: ICounterState) => state.disabledDecrease
 );

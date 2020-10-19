@@ -1,10 +1,11 @@
 import {createReducer, on} from '@ngrx/store';
-import {decrement, increment, reset, updatedAt} from './counter.action';
+import {decrement, disabledDecrease, increment, reset, updatedAt} from './counter.action';
 import {ICounterState} from './index';
 
 export const initialState: ICounterState = {
   counter: 0,
-  updatedAt: Date.now()
+  updatedAt: Date.now(),
+  disabledDecrease: true
 };
 
 const COUNTER_REDUCER = createReducer(
@@ -24,6 +25,12 @@ const COUNTER_REDUCER = createReducer(
   on(updatedAt, (state, action) => ({
     ...state,
     updatedAt: action.payload.updatedAt
+  })),
+  on(disabledDecrease, state => ({
+    ...state,
+    get disabledDecrease(): boolean {
+      return state.counter <= 0;
+    }
   }))
 );
 

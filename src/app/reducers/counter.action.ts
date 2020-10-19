@@ -7,3 +7,4 @@ export const updatedAt = createAction(
   '[Counter Component] Updated At',
   props<{ payload: { updatedAt: number } }>()
 );
+export const disabledDecrease = createAction('[Counter Component] is disabled decrease');
