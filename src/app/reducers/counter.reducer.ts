@@ -5,7 +5,9 @@ import {ICounterState} from './index';
 export const initialState: ICounterState = {
   counter: 0,
   updatedAt: Date.now(),
-  disabledDecrease: true
+  get disabledDecrease(): boolean {
+    return this.counter <= 0;
+  }
 };
 
 const COUNTER_REDUCER = createReducer(
@@ -28,9 +30,7 @@ const COUNTER_REDUCER = createReducer(
   })),
   on(disabledDecrease, state => ({
     ...state,
-    get disabledDecrease(): boolean {
-      return state.counter <= 0;
-    }
+    disabledDecrease: state.counter <= 0
   }))
 );
 

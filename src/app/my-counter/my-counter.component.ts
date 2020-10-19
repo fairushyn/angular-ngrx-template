@@ -26,16 +26,13 @@ export class MyCounterComponent implements OnInit {
 
   public increment(): void {
     this.store$.dispatch(countActions.increment());
-    this.store$.dispatch(countActions.disabledDecrease());
   }
 
   public decrement(): void {
     this.store$.dispatch(countActions.decrement());
-    this.store$.dispatch(countActions.disabledDecrease());
   }
 
   public reset(): void {
     this.store$.dispatch(countActions.reset());
-    this.store$.dispatch(countActions.disabledDecrease());
   }
 }
