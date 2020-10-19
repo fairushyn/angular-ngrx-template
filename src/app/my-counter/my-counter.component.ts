@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import * as countActions from '../reducers/counter.action';
@@ -7,12 +7,13 @@ import {IAppState, selectCounter, selectDisabledDecrease, selectUpdatedAt} from 
 @Component({
   selector: 'app-my-counter',
   templateUrl: './my-counter.component.html',
-  styleUrls: ['./my-counter.component.scss']
+  styleUrls: ['./my-counter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyCounterComponent implements OnInit {
-  counter$: Observable<number>;
-  updatedAt$: Observable<number>;
-  disabledDecrease$: Observable<boolean> ;
+  public counter$: Observable<number>;
+  public updatedAt$: Observable<number>;
+  public disabledDecrease$: Observable<boolean> ;
 
   constructor(private store$: Store<IAppState>) {
   }
@@ -23,17 +24,17 @@ export class MyCounterComponent implements OnInit {
     this.disabledDecrease$ = this.store$.pipe(select(selectDisabledDecrease));
   }
 
-  increment(): void {
+  public increment(): void {
     this.store$.dispatch(countActions.increment());
     this.store$.dispatch(countActions.disabledDecrease());
   }
 
-  decrement(): void {
+  public decrement(): void {
     this.store$.dispatch(countActions.decrement());
     this.store$.dispatch(countActions.disabledDecrease());
   }
 
-  reset(): void {
+  public reset(): void {
     this.store$.dispatch(countActions.reset());
     this.store$.dispatch(countActions.disabledDecrease());
   }
